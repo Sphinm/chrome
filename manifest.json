@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+  "name": "Extension",
+  "description": "屏蔽百度的广告",
+  "version": "1.0",
+  "icons": {
+    "16": "logo-1.png",
+    "48": "logo.png",
+    "128": "logo.png"
+  },
+
+  "browser_action": {
+    "default_icon": {
+      "16": "logo-1.png",
+      "48": "logo.png"
+    },
+    "default_title": "屏蔽百度广告"
+  },
+
+  "content_scripts": [{
+    "matches": ["http://www.baidu.com/*", "https://www.baidu.com/*"],
+    "js": ["main.js"],
+    "run_at": "document_end"
+  }]
+
+
+}

@@ -12,27 +12,24 @@
     var ad = {
         adSafe: function () {
 
-            // 顶部大广告，使用的类名不一样
-            let b = document.querySelector('.zapKAj');
-            if (b) b.remove();
-
-            // 顶部大广告，使用的类名不一样
-            let d = document.querySelector('.YkTPiJ');
-            if (d) d.remove();
-
-            // 底部的广告生成的类名是随机的，无法做的完全去掉
-            let c = document.querySelector('.fyjbPh');
-            if (c) c.remove();
-
             // 右侧区域广告
             let a = document.querySelector('.cr-offset');
             if (a) a.remove();
+
+            // 删除顶部第一个节点强制显示的广告
+            let e = document.querySelector('#content_left');
+            let es = e.firstElementChild.style.cssText;
+            if (es === 'display: block !important; visibility: visible !important;') e.firstElementChild.remove();
+
+            // 顶部强制显示的广告删除后默认会显示到最后一个，还需要再删除一下
+            let f = document.querySelector('#clone');
+            if (f) f.remove();
 
             // 删除有该类名的广告列表
             let adb = document.querySelectorAll('.ec_tuiguang_ppouter');
             if(adb.length > 0) {
                 for(let i = 0; i < adb.length;i++){
-                    console.log(adb[i].parentNode.parentNode.parentNode)
+                    console.dir('进入了ec_tuiguang_ppouter')
                     adb[i].parentNode.parentNode.parentNode.remove()
                 }
             }
@@ -41,7 +38,7 @@
             let ads = document.querySelectorAll('.ec_tuiguang_pplink');
             if(ads.length > 0) {
                 for(let i = 0; i < ads.length;i++){
-                    console.log(ads[i])
+                    console.dir('进入了ec_tuiguang_pplink')
                     ads[i].parentNode.parentNode.parentNode.remove()
                 }
             }

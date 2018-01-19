@@ -18,7 +18,7 @@
   },
 
   "content_scripts": [{
-    "matches": ["http://www.baidu.com/*", "https://www.baidu.com/*"],
+    "matches": ["http://*/*", "https://*/*"],
     "js": ["main.js"],
     "run_at": "document_end"
   }]

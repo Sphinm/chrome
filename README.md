@@ -6,7 +6,7 @@
   
 + 首先chrome插件需要有一个manifest文件，用来配置一些默认参数，这是一种离线缓存的方式，接着我们需要大小两个logo，index.html文件可要可不要，再就是主要的功能函数。如图所示：
     
-    ![chrome.png](http://upload-images.jianshu.io/upload_images/1394028-912d3d5967444bb0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+    ![chrome.png](http://upload-images.jianshu.io/upload_images/1394028-fde5a8f7a419f4b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
     
     
     

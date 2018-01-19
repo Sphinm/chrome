@@ -1,12 +1,12 @@
 (function () {
     /**
      *  创建chrome插件，简单去掉百度搜索的广告
-     *  主要根据广告通用的类名和内容为'广告' 两个字去删除节点 YkTPiJ
-     *  lRLJvx ekrJHU vOxVLk fXKqeY OGQyZL / sUdrNZ fdNwIe BUAeou CunVev H_Tqks
-     *  上面是两个底部广告的类名，没有什么规律
-     *
+     *  主要根据广告通用的类名和内容为'广告' 两个字去删除节点
      *  由于百度的的广告是异步加载的，然而插件是dom加载完成就执行了，所以需要手动的刷新一下，很不方便
      *  解决办法：通过设置一个定时器来模拟手动刷新
+     *
+     *  lRLJvx ekrJHU vOxVLk fXKqeY OGQyZL / sUdrNZ fdNwIe BUAeou CunVev H_Tqks
+     *  上面是两个底部广告的类名，没有什么规律
      * */
 
     let ad = {

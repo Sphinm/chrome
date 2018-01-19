@@ -6,6 +6,8 @@
      *  解决办法：通过设置一个定时器来模拟手动刷新
      *
      *  目前只能针对当前页 加载到下一页还是需要手动刷新一下,对于点击页码和点击上下页还需要修改
+     *
+     *  让页码点击事件后强制刷新达到初始化的目的，从而实现了点击上下文和点击页码都可以去广告的目的
      * */
 
     let ad = {
@@ -16,10 +18,12 @@
             if (cr) cr.remove();
 
             // 删除顶部和底部强制显示的广告
+            const temp = 'display: block !important; visibility: visible !important;';
+
             let cnt = document.querySelector('#content_left');
             let css_first = cnt.firstElementChild.style.cssText;
             let css_last = cnt.lastElementChild.style.cssText;
-            const temp = 'display: block !important; visibility: visible !important;';
+
             if (css_first === temp) cnt.firstElementChild.remove();
             if (css_last === temp) cnt.lastElementChild.remove();
 
@@ -28,7 +32,7 @@
             let outer = document.querySelectorAll('.ec_tuiguang_ppouter');
             if(outer.length > 0) {
                 for(let i = 0; i < outer.length;i++){
-                    console.dir('进入了ec_tuiguang_ppouter')
+                    console.log('进入了ec_tuiguang_ppouter')
                     outer[i].parentNode.parentNode.parentNode.remove()
                 }
             }
@@ -37,22 +41,23 @@
             let link = document.querySelectorAll('.ec_tuiguang_pplink');
             if(link.length > 0) {
                 for(let i = 0; i < link.length;i++){
-                    console.dir('进入了ec_tuiguang_pplink')
+                    console.log('进入了ec_tuiguang_pplink')
                     link[i].parentNode.parentNode.parentNode.remove()
                 }
             }
 
 
-            // 将第二次ajax加载出的数据中的广告再次清除
+            // 将第二次ajax加载出的数据中的广告需要再次清除
             setTimeout(function () {
                 let after = document.querySelectorAll('#content_left .result[id="1"] .f13 span.m');
                 for (let i=0 ;i<after.length; i++) {
                     if (after[i].innerText === '广告'){
                         after[i].parentNode.parentNode.remove();
+                        console.log(`${+new Date()}, 第${i+1}次清除ajax异步数据中的广告`)
                     } else
                         console.log('没有执行第二次ajax清除')
                 }
-            },2000)
+            }, 2000)
         },
 
 
@@ -67,14 +72,14 @@
         // 去除知乎首页的广告，下拉后异步加载的数据暂时无法去掉
         zhihu: function () {
             console.log('进入zhihu');
-          let zh = document.querySelector('.TopstoryItem--advertCard');
-          if (zh) zh.remove();
+            let zh = document.querySelector('.TopstoryItem--advertCard');
+            if (zh) zh.remove();
         },
 
         // 通过设置定时器来达到手动刷新的效果
         removeAd: function () {
             // 初始化执行
-            let time1 = setTimeout(ad.baidu, 1000);
+            let time1 = setTimeout(ad.baidu, 0);
             let time2 = setTimeout(function(){}, 1000);
 
             // 监听搜索button的点击事件
@@ -88,21 +93,12 @@
             });
 
 
-            // // 监听上一页、下一页的click事件
-            // document.querySelector('#page .n').addEventListener('click', function () {
-            //     console.log(123)
-            //     time2 = setTimeout(ad.baidu, 2000);
-            // });
-
-            // // 监听页码的点击事件
-            // let page = document.querySelectorAll('#page .pc');
-            // for (let i=0; i<page.length; i++) {
-            //     page[i].addEventListener('click', function () {
-            //         console.log(1234)
-            //         time2 = setTimeout(ad.baidu, 1000);
-            //     });
-            // }
-
+            // 监听上一页、下一页的click事件
+            // 这里页码和上下页都是li列表，所以这里需要用到事件代理，将li节点上的点击事件代理到父节点上
+            // 让页码点击事件后强制刷新达到初始化的目的
+            document.querySelector('#page').addEventListener('click', function () {
+                location.reload()
+            });
 
         }
     };

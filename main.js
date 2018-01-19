@@ -9,45 +9,49 @@
      *  解决办法：通过设置一个定时器来模拟手动刷新
      * */
 
-    var ad = {
+    let ad = {
         adSafe: function () {
 
             // 右侧区域广告
-            let a = document.querySelector('.cr-offset');
-            if (a) a.remove();
+            let cr = document.querySelector('.cr-offset');
+            if (cr) cr.remove();
 
             // 删除顶部第一个节点强制显示的广告
-            let e = document.querySelector('#content_left');
-            let es = e.firstElementChild.style.cssText;
-            if (es === 'display: block !important; visibility: visible !important;') e.firstElementChild.remove();
+            let cnt = document.querySelector('#content_left');
+            let css_first = cnt.firstElementChild.style.cssText;
+            let css_last = cnt.lastElementChild.style.cssText;
+            const temp = 'display: block !important; visibility: visible !important;';
+            if (css_first === temp) cnt.firstElementChild.remove();
+            if (css_last === temp) cnt.lastElementChild.remove();
+
 
             // 顶部强制显示的广告删除后默认会显示到最后一个，还需要再删除一下
-            let f = document.querySelector('#clone');
-            if (f) f.remove();
+            let clone = document.querySelector('#clone');
+            if (clone) clone.remove();
 
             // 删除有该类名的广告列表
-            let adb = document.querySelectorAll('.ec_tuiguang_ppouter');
-            if(adb.length > 0) {
-                for(let i = 0; i < adb.length;i++){
+            let outer = document.querySelectorAll('.ec_tuiguang_ppouter');
+            if(outer.length > 0) {
+                for(let i = 0; i < outer.length;i++){
                     console.dir('进入了ec_tuiguang_ppouter')
-                    adb[i].parentNode.parentNode.parentNode.remove()
+                    outer[i].parentNode.parentNode.parentNode.remove()
                 }
             }
 
             // 删除有该类名的广告列表
-            let ads = document.querySelectorAll('.ec_tuiguang_pplink');
-            if(ads.length > 0) {
-                for(let i = 0; i < ads.length;i++){
+            let link = document.querySelectorAll('.ec_tuiguang_pplink');
+            if(link.length > 0) {
+                for(let i = 0; i < link.length;i++){
                     console.dir('进入了ec_tuiguang_pplink')
-                    ads[i].parentNode.parentNode.parentNode.remove()
+                    link[i].parentNode.parentNode.parentNode.remove()
                 }
             }
         },
 
         // 通过设置定时器来达到手动刷新的效果
         removeAd: function () {
-            var time1 = setTimeout(ad.adSafe, 1000);
-            var time2 = setTimeout(function(){}, 1000);
+            let time1 = setTimeout(ad.adSafe, 1000);
+            let time2 = setTimeout(function(){}, 1000);
 
             // 监听搜索button的点击事件
             document.querySelector('#su').addEventListener('click', function () {

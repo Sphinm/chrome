@@ -12,7 +12,7 @@
     
     
 ## 使用方式
-   1. 下载该插件文件并解压到你的本地，然后打开chrome浏览器，输入chrome://extensions/ ，选中开发者模式，
+   1. 下载该插件文件并解压到你的本地，然后打开chrome浏览器，输入**chrome://extensions/** ，选中开发者模式，
     
     ![扩展程序.png](http://upload-images.jianshu.io/upload_images/1394028-b38d5af67b73a877.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
     

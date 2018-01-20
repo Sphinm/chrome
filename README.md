@@ -19,7 +19,7 @@
 
 
 #### crx文件安装方式
-    打开chrome浏览器，输入**chrome://extensions/** ，直接将crx文件拖拽到浏览器即可安装
+    打开chrome浏览器，输入chrome://extensions/ ，直接将crx文件拖拽到浏览器即可安装
 
 
 

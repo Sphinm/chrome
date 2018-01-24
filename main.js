@@ -64,16 +64,20 @@
         // 去除微博首页的广告，下拉后异步加载的数据暂时无法去掉
         weibo: function(){
             // 这里是微博的广告，不过就只有一点
-            console.log('进入weibo');
-            let wb = document.querySelector('.WB_feed div[data-mark]');
-            if (wb) wb.remove();
+           setTimeout(function(){
+           	 console.log('进入weibo');
+             let wb = document.querySelector('.WB_feed div[data-mark]');
+             if (wb) wb.remove();
+           }, 1000)
         },
 
         // 去除知乎首页的广告，下拉后异步加载的数据暂时无法去掉
         zhihu: function () {
-            console.log('进入zhihu');
-            let zh = document.querySelector('.TopstoryItem--advertCard');
-            if (zh) zh.remove();
+            setTimeout(function(){
+            	console.log('进入zhihu');
+	            let zh = document.querySelector('.TopstoryItem--advertCard');
+	            if (zh) zh.remove();
+            }, 1000)
         },
 
         // 通过设置定时器来达到手动刷新的效果
